@@ -1,7 +1,7 @@
 Hallo Nama saya DImas Wahyu Pratama, Saya adalah mahasiswa dari Horizon University
 link game project: https://nekomata573.itch.io/migame
 
-![alt text] (https://github.com/Nekomata573/Mygame/blob/main/assets/gem.png?raw=true)
+![Alt teks](gambar tautan)
 
 
 
