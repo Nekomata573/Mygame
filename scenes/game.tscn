@@ -33,7 +33,6 @@ script = SubResource("GDScript_i7geq")
 
 [node name="Paddle" parent="." instance=ExtResource("2_ilxa7")]
 position = Vector2(564, 589)
-speed = 200.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
