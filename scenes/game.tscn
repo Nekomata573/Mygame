@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxylsq6nbl4ly"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_efrsg"]
+[ext_resource type="Texture2D" uid="uid://yb3vsu2xmct2" path="res://assets/GameBg.png" id="1_gc0n0"]
+[ext_resource type="PackedScene" uid="uid://3jef2gqa6llt" path="res://scenes/paddle.tscn" id="2_ilxa7"]
+[ext_resource type="PackedScene" uid="uid://hlaiw2uq1lee" path="res://scenes/gem.tscn" id="3_hlmcm"]
+[ext_resource type="AudioStream" uid="uid://cwcapia347ufr" path="res://assets/bgm_action_5.mp3" id="5_1u4q1"]
+[ext_resource type="AudioStream" uid="uid://c4agwoxvr0nlr" path="res://assets/spell1_0.wav" id="6_bt2ma"]
+
+[sub_resource type="GDScript" id="GDScript_i7geq"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_efrsg")
+gem_scene = ExtResource("3_hlmcm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(589, 316)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_gc0n0")
+script = SubResource("GDScript_i7geq")
+
+[node name="Paddle" parent="." instance=ExtResource("2_ilxa7")]
+position = Vector2(564, 589)
+speed = 200.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 134.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.91121, 0.343052, 0.765902, 1)
+theme_override_colors/font_shadow_color = Color(0.991205, 0.679226, 0.770177, 1)
+theme_override_colors/font_outline_color = Color(0.224085, 0.236138, 0.825413, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 48
+text = "00000"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1u4q1")
+volume_db = -16.589
+autoplay = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_bt2ma")
+
+[connection signal="area_entered" from="Paddle" to="." method="_on_paddle_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
